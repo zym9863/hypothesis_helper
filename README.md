@@ -1,5 +1,7 @@
 # hypothesis_helper
 
+[English Version](README_EN.md) | [中文版](README.md)
+
 # 假设检验助手 (Hypothesis Helper)
 
 一个功能完整的Flutter应用，专为统计学假设检验设计，提供计算器和交互式学习功能。
