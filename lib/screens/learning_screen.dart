@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'learning/p_value_visualization_screen.dart';
 import 'learning/error_types_screen.dart';
 import 'learning/distribution_visualization_screen.dart';
+import 'learning/power_analysis_screen.dart';
+import 'learning/hypothesis_steps_screen.dart';
+import 'learning/rejection_region_screen.dart';
 
 /// 交互式学习模块屏幕
 class LearningScreen extends StatefulWidget {
@@ -100,7 +103,12 @@ class _LearningScreenState extends State<LearningScreen> {
                     '可视化展示样本量、效应大小对检验效能的影响',
                     Icons.trending_up,
                     Colors.orange,
-                    () => _showComingSoon(context, '检验效能分析'),
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PowerAnalysisScreen(),
+                      ),
+                    ),
                   ),
                   _buildLearningCard(
                     '概率分布图表',
@@ -119,14 +127,24 @@ class _LearningScreenState extends State<LearningScreen> {
                     '学习假设检验的标准步骤和决策过程',
                     Icons.list_alt,
                     Colors.green,
-                    () => _showComingSoon(context, '假设检验步骤'),
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HypothesisStepsScreen(),
+                      ),
+                    ),
                   ),
                   _buildLearningCard(
                     '拒绝域可视化',
                     '理解拒绝域的概念和显著性水平的影响',
                     Icons.crop_free,
                     Colors.teal,
-                    () => _showComingSoon(context, '拒绝域可视化'),
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RejectionRegionScreen(),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -162,22 +180,6 @@ class _LearningScreenState extends State<LearningScreen> {
         subtitle: Text(description),
         trailing: const Icon(Icons.arrow_forward_ios),
         onTap: onTap,
-      ),
-    );
-  }
-
-  void _showComingSoon(BuildContext context, String feature) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('即将推出'),
-        content: Text('$feature 功能正在开发中，敬请期待！'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('确定'),
-          ),
-        ],
       ),
     );
   }
