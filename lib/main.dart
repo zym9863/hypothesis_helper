@@ -24,6 +24,7 @@ class HypothesisHelperApp extends StatelessWidget {
             brightness: Brightness.light,
           ),
           useMaterial3: true,
+          fontFamily: 'Microsoft YaHei',
           appBarTheme: const AppBarTheme(
             centerTitle: true,
             elevation: 0,
