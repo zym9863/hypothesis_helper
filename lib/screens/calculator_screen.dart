@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'test_selection_screen.dart';
+import '../theme/app_theme.dart';
 
 /// 假设检验计算器屏幕
 class CalculatorScreen extends StatefulWidget {
@@ -17,36 +18,50 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         title: const Text('假设检验计算器'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 欢迎卡片
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const Icon(
-                      Icons.calculate,
-                      size: 60,
-                      color: Colors.blue,
-                    ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 欢迎卡片
+              Container(
+                decoration: BoxDecoration(
+                  gradient: AppTheme.primaryGradient,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [AppTheme.cardShadow],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.calculate,
+                          size: 56,
+                          color: Colors.white,
+                        ),
+                      ),
                     const SizedBox(height: 16),
                     const Text(
                       '假设检验计算器',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
+                    Text(
                       '选择适合的检验类型，输入数据，获得准确的统计结果',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey,
+                        color: Colors.white.withValues(alpha: 0.9),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -85,45 +100,46 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ),
             const SizedBox(height: 16),
 
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 1.2,
-                children: [
-                  _buildFeatureCard(
-                    '参数检验',
-                    'T检验、Z检验、ANOVA',
-                    Icons.trending_up,
-                    Colors.blue,
-                  ),
-                  _buildFeatureCard(
-                    '非参数检验',
-                    '符号检验、Wilcoxon检验',
-                    Icons.show_chart,
-                    Colors.green,
-                  ),
-                  _buildFeatureCard(
-                    '卡方检验',
-                    '拟合优度检验',
-                    Icons.pie_chart,
-                    Colors.orange,
-                  ),
-                  _buildFeatureCard(
-                    '方差分析',
-                    '单因素ANOVA',
-                    Icons.bar_chart,
-                    Colors.purple,
-                  ),
-                ],
-              ),
+            GridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1.2,
+              children: [
+                _buildFeatureCard(
+                  '参数检验',
+                  'T检验、Z检验、ANOVA',
+                  Icons.trending_up,
+                  AppTheme.primaryBlue,
+                ),
+                _buildFeatureCard(
+                  '非参数检验',
+                  '符号检验、Wilcoxon检验',
+                  Icons.show_chart,
+                  AppTheme.successGreen,
+                ),
+                _buildFeatureCard(
+                  '卡方检验',
+                  '拟合优度检验',
+                  Icons.pie_chart,
+                  AppTheme.warningOrange,
+                ),
+                _buildFeatureCard(
+                  '方差分析',
+                  '单因素ANOVA',
+                  Icons.bar_chart,
+                  const Color(0xFF9C27B0),
+                ),
+              ],
             ),
           ],
         ),
       ),
-    );
-  }
+    )
+  );
+}
 
   Widget _buildFeatureCard(String title, String subtitle, IconData icon, Color color) {
     return Card(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/test_provider.dart';
 import 'screens/main_screen.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   runApp(const HypothesisHelperApp());
@@ -18,24 +19,9 @@ class HypothesisHelperApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: '假设检验助手',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
-            brightness: Brightness.light,
-          ),
-          useMaterial3: true,
-          fontFamily: 'Microsoft YaHei',
-          appBarTheme: const AppBarTheme(
-            centerTitle: true,
-            elevation: 0,
-          ),
-          cardTheme: CardThemeData(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
+        theme: AppTheme.lightTheme(),
+        darkTheme: AppTheme.darkTheme(),
+        themeMode: ThemeMode.light,
         home: const MainScreen(),
         debugShowCheckedModeBanner: false,
       ),
